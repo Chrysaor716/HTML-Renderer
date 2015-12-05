@@ -2,16 +2,26 @@
 
 import Tkinter
 from Tkinter import Label
+from Tkinter import Text
 
 # Tkinter.Tk: Base class to inherit from for standard windows.
 base = Tkinter.Tk()
 
+"""		Title 		"""
+base.title("HTML Renderer")
+
+"""		Window Label		"""
 title = Label(base,
-			text="HTML Renderer",
-			font="Times 20 bold",
-			fg="white",
-			bg="black")
+			text="A more interactive HTML coding environment!",
+			font="Times 10 bold",
+			fg="white",		# Text color
+			bg="black",		# Text background color
+			anchor="center")
 title.pack()	# Fit the size of the window to text
 
-# Opens/Runs the GUI
+"""		Text Box For User Input		"""
+text = Text(base)
+text.pack()
+
+# Display the window
 base.mainloop()
