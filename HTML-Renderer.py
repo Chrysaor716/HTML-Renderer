@@ -3,8 +3,6 @@
 import Tkinter
 from Tkinter import Label
 from Tkinter import Text
-from Tkinter import StringVar
-from Tkinter import Message
 
 # Tkinter.Tk: Base class to inherit from for standard windows.
 base = Tkinter.Tk()
@@ -22,17 +20,19 @@ title = Label(base,
 title.pack()	# Fit the size of the window to text
 
 """		Text Box For User Input		"""
-text = Text(base,
+usrInput = Text(base,
 			font="Times 14",
 			fg="black",
 			bg="white")
-text.pack()
+usrInput.pack(fill="y", padx=10, side="left")
 
 """		Message Box to Reflect User Inputs		"""
-strVar = StringVar()
-output = Message(base, textvariable=strVar)
-strVar.set("TESTING: What up, world!")
-output.pack()
+output = Text(base,
+			font="Times 14 bold",
+			fg="black",
+			bg="white")
+#output.insert(index[,string])
+output.pack(fill="y", padx=10, side="right")
 
 # Display the window
 base.mainloop()
