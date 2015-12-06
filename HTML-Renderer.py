@@ -9,10 +9,12 @@ def textChanged(event=None):
 # Tkinter.Tk: Base class to inherit from for standard windows.
 base = Tkinter.Tk()
 
-"""		Title 		"""
+"""		Title
+"""
 base.title("HTML Renderer")
 
-"""		Window Label		"""
+"""		Window Label
+"""
 title = Label(base,
 			text="A more interactive HTML coding environment!",
 			font="Times 10 bold",
@@ -21,7 +23,8 @@ title = Label(base,
 			anchor="center")
 title.pack()	# Fit the size of the window to text
 
-"""		Text Box For User Input		"""
+"""		Text Box For User Input
+"""
 usrInput = Text(base,
 			font="Times 14",
 			fg="black",
@@ -31,10 +34,11 @@ usrScroll = Scrollbar(base)
 usrScroll.pack(fill="y", side="left")
 usrScroll.config(command=usrInput.yview)
 usrInput.config(yscrollcommand=usrScroll.set)
-# Bind event for when text is modified
+# Bind the Tkinter <<Modified>> virtual event to callback
 usrInput.bind('<<Modified>>', textChanged)
 
-"""		Message Box to Reflect User Inputs		"""
+"""		Message Box to Reflect User Inputs
+"""
 output = Text(base,
 			font="Times 14 bold",
 			fg="black",
