@@ -11,9 +11,6 @@ base = Tkinter.Tk()
 """		Title 		"""
 base.title("HTML Renderer")
 
-"""		Scrollbar		"""
-scrollbar = Scrollbar(base)
-
 """		Window Label		"""
 title = Label(base,
 			text="A more interactive HTML coding environment!",
@@ -29,16 +26,21 @@ usrInput = Text(base,
 			fg="black",
 			bg="white")
 usrInput.pack(fill="y", padx=10, side="left")
-scrollbar.pack(fill="y", side="left")
-scrollbar.config(command=usrInput.yview)
-usrInput.config(yscrollcommand=scrollbar.set)
+usrScroll = Scrollbar(base)
+usrScroll.pack(fill="y", side="left")
+usrScroll.config(command=usrInput.yview)
+usrInput.config(yscrollcommand=usrScroll.set)
 
 """		Message Box to Reflect User Inputs		"""
 output = Text(base,
 			font="Times 14 bold",
 			fg="black",
 			bg="white")
+outScroll = Scrollbar(base)
+outScroll.pack(fill="y", side="right")
 output.pack(fill="y", padx=10, side="right")
+outScroll.config(command=output.yview)
+output.config(yscrollcommand=outScroll.set)
 
 # Display the window
 base.mainloop()
