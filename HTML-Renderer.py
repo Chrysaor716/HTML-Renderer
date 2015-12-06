@@ -3,10 +3,11 @@
 import Tkinter
 from Tkinter import Label, Text, Scrollbar
 
-"""		Event handler for key release events
+"""		Event handler (callback) for key release events
 """
 def onKeyReleased(event):
 	print 'key released: ' + event.char
+	print usrInput.get('1.0', 'end')
 
 # Tkinter.Tk: Base class to inherit from for standard windows.
 base = Tkinter.Tk()
