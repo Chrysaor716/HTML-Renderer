@@ -1,9 +1,10 @@
 #!/usr/bin/python
 
 import Tkinter
-from Tkinter import Label
-from Tkinter import Text
-from Tkinter import Scrollbar
+from Tkinter import Label, Text, Scrollbar
+
+def textChanged(event=None):
+	print 'text changed!'
 
 # Tkinter.Tk: Base class to inherit from for standard windows.
 base = Tkinter.Tk()
@@ -30,6 +31,8 @@ usrScroll = Scrollbar(base)
 usrScroll.pack(fill="y", side="left")
 usrScroll.config(command=usrInput.yview)
 usrInput.config(yscrollcommand=usrScroll.set)
+# Bind event for when text is modified
+usrInput.bind('<<Modified>>', textChanged)
 
 """		Message Box to Reflect User Inputs		"""
 output = Text(base,
