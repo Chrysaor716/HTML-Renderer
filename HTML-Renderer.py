@@ -27,37 +27,34 @@ def onKeyReleased(event):
 					if text[index-2] == '1': # Header 1
 						output.tag_add('h1', tagStart, output.index('end - 1 chars'))
 						output.tag_config('h1', font='Times 32 bold')
+						output.delete(output.index('end - 6 chars'), output.index('end - 1 chars'))
 					elif text[index-2] == '2': # Header 2
 						output.tag_add('h2', tagStart, output.index('end - 1 chars'))
 						output.tag_config('h2', font='Times 26 bold')
+						output.delete(output.index('end - 6 chars'), output.index('end - 1 chars'))
 					elif text[index-2] == '3': # Header 3
 						output.tag_add('h3', tagStart, output.index('end - 1 chars'))
 						output.tag_config('h3', font='Times 19 bold')
+						output.delete(output.index('end - 6 chars'), output.index('end - 1 chars'))
 					elif text[index-2] == '4': # Header 4
 						output.tag_add('h4', tagStart, output.index('end - 1 chars'))
 						output.tag_config('h4', font='Times 16 bold')
+						output.delete(output.index('end - 6 chars'), output.index('end - 1 chars'))
 					elif text[index-2] == '5': # Header 5
 						output.tag_add('h5', tagStart, output.index('end - 1 chars'))
 						output.tag_config('h5', font='Times 13 bold')
+						output.delete(output.index('end - 6 chars'), output.index('end - 1 chars'))
 					elif text[index-2] == '6': # Header 6
 						output.tag_add('h6', tagStart, output.index('end - 1 chars'))
 						output.tag_config('h6', font='Times 10 bold')
+						output.delete(output.index('end - 6 chars'), output.index('end - 1 chars'))
 					else: 			   # Invalid character; "default" case
 						print 'Subliminal messaging.'
-#					output.delete(output.index('end - 6 chars'), output.index('end - 1 chars'))
 				if text[index-4] == '<': # Opening tag
 					output.delete(output.index('end - 5 chars'), output.index('end - 1 chars'))
 					tagStart = output.index('end - 1 chars')		 # this one is the \n char
 		output.insert('end', char)
 
-#	# Scan text box again and delete HTML tags
-#	outText = output.get('1.0', 'end')
-#	for index, char in enumerate(outText):
-#		if outText[index] == '<' and outText[index+1] == 'h' and outText[index+3] == '>': # Open tag
-#			output.delete(output.index('end - 4 chars'), output.index('end - 1 chars'))
-#		if outText[index] == '<' and outText[index+1] == '/' and outText[index+2] == 'h' and outText[index+4] == '>':
-#			output.delete(output.index('end - 5 chars'), output.index('end - 1 chars'))
-					
 # Tkinter.Tk: Base class to inherit from for standard windows.
 base = Tkinter.Tk()
 
