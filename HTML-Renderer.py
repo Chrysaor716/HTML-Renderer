@@ -3,10 +3,17 @@
 import Tkinter
 from Tkinter import Label, Text, Scrollbar
 
+# Constants
+DEFAULT_FONT_SIZE = 14
+
 """		Event handler (callback) for key release events.
 """
 # ThisisprobablysuperinefficientI'msorry #cringe
 def onKeyReleased(event):
+	indexSnap = 0
+	# Clear output text box every time script runs this frame
+	output.delete('1.0', 'end')
+	
 	# Get all text from the user text box
 	text = usrInput.get('1.0', 'end')
 	# Look for important characters and parse
@@ -16,7 +23,7 @@ def onKeyReleased(event):
 			if text[index-3] == '/': # If closing tag
 				# No switch/case in Python :(
 				if text[index-1] == '1': # Header 1
-					print '32pt'
+					print 'font 32pt'
 				elif text[index-1] == '2': # Header 2
 					print '24pt'
 				elif text[index-1] == '3': # Header 3
@@ -29,6 +36,8 @@ def onKeyReleased(event):
 					print '10pt'
 				else: 			   # Invalid character
 					print 'Do nothing; keep at default font size'
+	
+		output.insert('end', char)
 
 # Tkinter.Tk: Base class to inherit from for standard windows.
 base = Tkinter.Tk()
@@ -50,7 +59,7 @@ title.pack()	# Fit the size of the window to text
 """		Text Box For User Input
 """
 usrInput = Text(base,
-			font='Times 14',
+			font=('Times', DEFAULT_FONT_SIZE),
 			fg='black',
 			bg='white')
 usrInput.pack(fill='y', padx=10, side='left')
@@ -64,7 +73,7 @@ usrInput.bind('<KeyRelease>', onKeyReleased)
 """		Message Box to Reflect User Inputs
 """
 output = Text(base,
-			font='Times 14 bold',
+			font='Times',
 			fg='black',
 			bg='white')
 outScroll = Scrollbar(base)
