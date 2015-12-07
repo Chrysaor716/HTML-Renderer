@@ -22,7 +22,9 @@ def onKeyReleased(event):
 			if text[index-3] == 'h':
 				# See if it's the opening or closing tag
 				if text[index-4] == '/' and text[index-5] == '<': # If closing tag
-					# Do not output the HTML tags
+					# Syntax highlighting in editor
+#					usrInput.tag_add('tag')
+
 					# No switch/case in Python :(
 					if text[index-2] == '1': # Header 1
 						output.tag_add('h1', tagStart, output.index('end - 1 chars'))
@@ -53,6 +55,11 @@ def onKeyReleased(event):
 				if text[index-4] == '<': # Opening tag
 					output.delete(output.index('end - 5 chars'), output.index('end - 1 chars'))
 					tagStart = output.index('end - 1 chars')		 # this one is the \n char
+			# Check if it's a paragraph tag
+			if text[index-2] == 'p':
+				if text[index-3] == '<': output.delete(output.index('end - 4 chars'), output.index('end - 1 chars'))
+				if text[index-3] == '/': output.delete(output.index('end - 5 chars'), output.index('end - 1 chars'))
+
 		output.insert('end', char)
 
 # Tkinter.Tk: Base class to inherit from for standard windows.
@@ -63,15 +70,22 @@ base.config(bg='black')
 """
 base.title("HTML Renderer")
 
-"""		Window Label
+"""		Window Labels
 """
 title = Label(base,
-			text='A more interactive HTML coding environment!\nPlease type your code in the left text box.',
-			font='Times 10 bold',
+			text='A more interactive HTML coding environment!',
+			font='Times 14 bold',
 			fg='white',		# Text color
 			bg='black',		# Text background color
 			anchor='center')
 title.pack()	# Fit the size of the window to text
+description = Label(base,
+			text='Please type your code in the left text box.',
+			font='Times 12 bold',
+			fg='red',
+			bg='black',
+			anchor='center')
+description.pack()
 
 """		Text Box For User Input
 """

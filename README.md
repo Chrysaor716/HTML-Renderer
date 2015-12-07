@@ -1,6 +1,6 @@
 # HTML-Renderer
 Renders your HTML code as you type them.
-Currently only working for header tags.
+Currently only working for header and paragraph tags.
 
 Python version: 2.7.10
 	Tkinter was renamed to tkinter (with a lowercase 't')
