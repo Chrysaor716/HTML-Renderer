@@ -57,6 +57,7 @@ def onKeyReleased(event):
 
 # Tkinter.Tk: Base class to inherit from for standard windows.
 base = Tkinter.Tk()
+base.config(bg='black')
 
 """		Title
 """
@@ -78,7 +79,7 @@ usrInput = Text(base,
 			font=('Times', DEFAULT_FONT_SIZE),
 			fg='black',
 			bg='white')
-usrInput.pack(fill='y', padx=10, side='left')
+usrInput.pack(fill='both', expand='true', padx=10, side='left')
 usrScroll = Scrollbar(base)
 usrScroll.pack(fill='y', side='left')
 usrScroll.config(command=usrInput.yview)
@@ -94,7 +95,7 @@ output = Text(base,
 			bg='white')
 outScroll = Scrollbar(base)
 outScroll.pack(fill='y', side='right')
-output.pack(fill='y', padx=10, side='right')
+output.pack(fill='both', expand='true', padx=10, side='right')
 outScroll.config(command=output.yview)
 output.config(yscrollcommand=outScroll.set)
 
