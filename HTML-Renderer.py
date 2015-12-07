@@ -10,7 +10,6 @@ DEFAULT_FONT_SIZE = 14
 """
 # ThisisprobablysuperinefficientI'msorry #cringe
 def onKeyReleased(event):
-#	insertChar = 1	# Boolean to prevent insertting HTML tags
 	# Clear output text box every time script runs this frame
 	output.delete('1.0', 'end')
 
@@ -18,12 +17,12 @@ def onKeyReleased(event):
 	text = usrInput.get('1.0', 'end')
 	# Look for important characters and parse
 	for index, char in enumerate(text):
-
 		if text[index-1] == '>':
 			# Check if it's a header tag
 			if text[index-3] == 'h':
 				# See if it's the opening or closing tag
-				if text[index-4] == '/': # If closing tag
+				if text[index-4] == '/' and text[index-5] == '<': # If closing tag
+					# Do not output the HTML tags
 					# No switch/case in Python :(
 					if text[index-2] == '1': # Header 1
 						output.tag_add('h1', tagStart, output.index('end - 1 chars'))
@@ -43,13 +42,22 @@ def onKeyReleased(event):
 					elif text[index-2] == '6': # Header 6
 						output.tag_add('h6', tagStart, output.index('end - 1 chars'))
 						output.tag_config('h6', font='Times 10 bold')
-					else: 			   # Invalid character
+					else: 			   # Invalid character; "default" case
 						print 'Subliminal messaging.'
+#					output.delete(output.index('end - 6 chars'), output.index('end - 1 chars'))
 				if text[index-4] == '<': # Opening tag
-					tagStart = output.index('end - 1 chars')
-
+					output.delete(output.index('end - 5 chars'), output.index('end - 1 chars'))
+					tagStart = output.index('end - 1 chars')		 # this one is the \n char
 		output.insert('end', char)
 
+#	# Scan text box again and delete HTML tags
+#	outText = output.get('1.0', 'end')
+#	for index, char in enumerate(outText):
+#		if outText[index] == '<' and outText[index+1] == 'h' and outText[index+3] == '>': # Open tag
+#			output.delete(output.index('end - 4 chars'), output.index('end - 1 chars'))
+#		if outText[index] == '<' and outText[index+1] == '/' and outText[index+2] == 'h' and outText[index+4] == '>':
+#			output.delete(output.index('end - 5 chars'), output.index('end - 1 chars'))
+					
 # Tkinter.Tk: Base class to inherit from for standard windows.
 base = Tkinter.Tk()
 
