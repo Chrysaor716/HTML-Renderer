@@ -3,9 +3,6 @@
 import Tkinter
 from Tkinter import Label, Text, Scrollbar
 
-# Oh no, not the global variable! D:
-TAG_FLAG = 0
-
 """		Event handler (callback) for key release events.
 """
 # ThisisprobablysuperinefficientI'msorry #cringe
@@ -14,9 +11,24 @@ def onKeyReleased(event):
 	text = usrInput.get('1.0', 'end')
 	# Look for important characters and parse
 	for index, char in enumerate(text):
-		# Whoa, Python doesn't have switch/case
 		if char == '>':
-			print text[index-1]
+			# See if it's the opening or closing tag
+			if text[index-3] == '/': # If closing tag
+				# No switch/case in Python :(
+				if text[index-1] == '1': # Header 1
+					print '32pt'
+				elif text[index-1] == '2': # Header 2
+					print '24pt'
+				elif text[index-1] == '3': # Header 3
+					print '19pt'
+				elif text[index-1] == '4': # Header 4
+					print '16pt'
+				elif text[index-1] == '5': # Header 5
+					print '13pt'
+				elif text[index-1] == '6': # Header 6
+					print '10pt'
+				else: 			   # Invalid character
+					print 'Do nothing; keep at default font size'
 
 # Tkinter.Tk: Base class to inherit from for standard windows.
 base = Tkinter.Tk()
