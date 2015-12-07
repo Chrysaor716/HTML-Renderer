@@ -10,16 +10,10 @@ DEFAULT_FONT_SIZE = 14
 """
 # ThisisprobablysuperinefficientI'msorry #cringe
 def onKeyReleased(event):
-	tagStart = 0	# Start of index for syntax highlighting
 #	insertChar = 1	# Boolean to prevent insertting HTML tags
 	# Clear output text box every time script runs this frame
 	output.delete('1.0', 'end')
 
-
-
-	print usrInput.index('end')
-
-	
 	# Get all text from the user text box
 	text = usrInput.get('1.0', 'end')
 	# Look for important characters and parse
@@ -43,9 +37,11 @@ def onKeyReleased(event):
 					# No switch/case in Python :(
 					if text[index-2] == '1': # Header 1
 						print 'font 32pt'
-						output.tag_add('h1', 'tagStart', 'insert')
+						output.tag_add('h1', tagStart, output.index('end'))
+				
+						print 'tag end: ' + output.index('end')
+
 						output.tag_config('h1', font='Times 32 bold')
-						output.mark_unset('tagStart')
 					elif text[index-2] == '2': # Header 2
 						print '24pt'
 					elif text[index-2] == '3': # Header 3
@@ -59,7 +55,10 @@ def onKeyReleased(event):
 					else: 			   # Invalid character
 						print 'Subliminal messaging.'
 				if text[index-4] == '<': # Opening tag
-					output.mark_set('tagStart', 'insert')
+					tagStart = output.index('end - 1 chars')
+
+					print 'tag start: ' + tagStart
+
 
 #		if insertChar == 1:
 		output.insert('end', char)
