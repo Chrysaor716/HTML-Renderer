@@ -14,6 +14,11 @@ def onKeyReleased(event):
 #	insertChar = 1	# Boolean to prevent insertting HTML tags
 	# Clear output text box every time script runs this frame
 	output.delete('1.0', 'end')
+
+
+
+	print usrInput.index('end')
+
 	
 	# Get all text from the user text box
 	text = usrInput.get('1.0', 'end')
@@ -38,8 +43,9 @@ def onKeyReleased(event):
 					# No switch/case in Python :(
 					if text[index-2] == '1': # Header 1
 						print 'font 32pt'
-#						output.tag_config('h1', font='Times 32 bold')
-#						output.tag_add('h1', 'tagStart', 'index')
+						output.tag_add('h1', 'tagStart', 'insert')
+						output.tag_config('h1', font='Times 32 bold')
+						output.mark_unset('tagStart')
 					elif text[index-2] == '2': # Header 2
 						print '24pt'
 					elif text[index-2] == '3': # Header 3
@@ -52,8 +58,8 @@ def onKeyReleased(event):
 						print '10pt'
 					else: 			   # Invalid character
 						print 'Subliminal messaging.'
-				#if text[index-4] == '<': # Opening tag
-				#	tagStart = index
+				if text[index-4] == '<': # Opening tag
+					output.mark_set('tagStart', 'insert')
 
 #		if insertChar == 1:
 		output.insert('end', char)
