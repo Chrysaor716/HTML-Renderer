@@ -18,16 +18,6 @@ def onKeyReleased(event):
 	text = usrInput.get('1.0', 'end')
 	# Look for important characters and parse
 	for index, char in enumerate(text):
-#		# Check whether or not user is typing an HTML tag
-#		if char == '>':
-#			if text[index-2] == 'h': # Header tags have an extra char
-#				if text[index-3] == '<' or text[index-3] == '/':
-#					insertChar = 0
-#			elif text[index-1] == 'p': # Paragraph tag
-#				if text[index-2] == '<' or text[index-2] == '/':
-#					insertChar = 0
-#			else:
-#				insertChar = 1
 
 		if text[index-1] == '>':
 			# Check if it's a header tag
@@ -36,31 +26,28 @@ def onKeyReleased(event):
 				if text[index-4] == '/': # If closing tag
 					# No switch/case in Python :(
 					if text[index-2] == '1': # Header 1
-						print 'font 32pt'
-						output.tag_add('h1', tagStart, output.index('end'))
-				
-						print 'tag end: ' + output.index('end')
-
+						output.tag_add('h1', tagStart, output.index('end - 1 chars'))
 						output.tag_config('h1', font='Times 32 bold')
 					elif text[index-2] == '2': # Header 2
-						print '24pt'
+						output.tag_add('h2', tagStart, output.index('end - 1 chars'))
+						output.tag_config('h2', font='Times 26 bold')
 					elif text[index-2] == '3': # Header 3
-						print '19pt'
+						output.tag_add('h3', tagStart, output.index('end - 1 chars'))
+						output.tag_config('h3', font='Times 19 bold')
 					elif text[index-2] == '4': # Header 4
-						print '16pt'
+						output.tag_add('h4', tagStart, output.index('end - 1 chars'))
+						output.tag_config('h4', font='Times 16 bold')
 					elif text[index-2] == '5': # Header 5
-						print '13pt'
+						output.tag_add('h5', tagStart, output.index('end - 1 chars'))
+						output.tag_config('h5', font='Times 13 bold')
 					elif text[index-2] == '6': # Header 6
-						print '10pt'
+						output.tag_add('h6', tagStart, output.index('end - 1 chars'))
+						output.tag_config('h6', font='Times 10 bold')
 					else: 			   # Invalid character
 						print 'Subliminal messaging.'
 				if text[index-4] == '<': # Opening tag
 					tagStart = output.index('end - 1 chars')
 
-					print 'tag start: ' + tagStart
-
-
-#		if insertChar == 1:
 		output.insert('end', char)
 
 # Tkinter.Tk: Base class to inherit from for standard windows.
