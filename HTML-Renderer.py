@@ -3,11 +3,20 @@
 import Tkinter
 from Tkinter import Label, Text, Scrollbar
 
-"""		Event handler (callback) for key release events
+# Oh no, not the global variable! D:
+TAG_FLAG = 0
+
+"""		Event handler (callback) for key release events.
 """
+# ThisisprobablysuperinefficientI'msorry #cringe
 def onKeyReleased(event):
-	print 'key released: ' + event.char
-	print usrInput.get('1.0', 'end')
+	# Get all text from the user text box
+	text = usrInput.get('1.0', 'end')
+	# Look for important characters and parse
+	for index, char in enumerate(text):
+		# Whoa, Python doesn't have switch/case
+		if char == '>':
+			print text[index-1]
 
 # Tkinter.Tk: Base class to inherit from for standard windows.
 base = Tkinter.Tk()
